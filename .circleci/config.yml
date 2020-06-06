@@ -29,10 +29,10 @@ jobs:
     machine: true 
     steps:
       - checkout
-      - run: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+      - run: echo "$DOCKERPASS" | docker login -u "$DOCKERUSER" --password-stdin
       - run:
           name: Docker publish server
-          command:
+          command: |
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker build -t gzelekask/node-react-cicd-server:$TAG .
             docker push gzelekask/node-react-cicd-server:$TAG
